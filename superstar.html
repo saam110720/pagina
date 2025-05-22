@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>🐶 Perritos Super Star</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fefefe;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ff6b81;
+    }
+
+    .search-bar {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      width: 250px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 15px 0;
+    }
+
+    .button-group button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: #eee;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .button-group button.active,
+    .button-group button:hover {
+      background-color: #ff6b81;
+      color: white;
+    }
+
+    .perrito-lista {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .perrito {
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .perrito img {
+      max-width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .perrito h3 {
+      margin: 10px 0 5px;
+      color: #444;
+    }
+
+    .perrito p {
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🐶 Perritos Super Star</h1>
+
+  <div class="search-bar">
+    <input type="text" id="buscar" placeholder="🔍 Buscar por nombre...">
+  </div>
+
+  <div class="button-group">
+    <button id="btnActual" class="active">🔁 Perritos actuales</button>
+    <button id="btnAnteriores">📂 Perritos anteriores</button>
+  </div>
+
+  <div class="button-group">
+    <button id="btnVotados" class="active">📈 Más votados</button>
+    <button id="btnRecientes">🕒 Más recientes</button>
+  </div>
+
+  <div class="perrito-lista" id="listaPerritos">
+    <div class="perrito">
+      <img src="https://placedog.net/400/300?id=1" alt="Perrito 1">
+      <h3>Max</h3>
+      <p>Campeón en carreras de patio 🏃‍♂️</p>
+    </div>
+    <div class="perrito">
+      <img src="https://placedog.net/400/300?id=2" alt="Perrito 2">
+      <h3>Luna</h3>
+      <p>Reina de los abrazos nocturnos 🌙</p>
+    </div>
+    <div class="perrito">
+      <img src="https://placedog.net/400/300?id=3" alt="Perrito 3">
+      <h3>Rocky</h3>
+      <p>Especialista en destrozar pantuflas 👟</p>
+    </div>
+    <div class="perrito">
+      <img src="https://placedog.net/400/300?id=4" alt="Perrito 4">
+      <h3>Bella</h3>
+      <p>Ganadora del concurso de miradas tiernas 👀</p>
+    </div>
+  </div>
+
+  <script>
+    const buscarInput = document.getElementById('buscar');
+    const perritos = document.querySelectorAll('.perrito');
+
+    buscarInput.addEventListener('input', () => {
+      const texto = buscarInput.value.toLowerCase();
+      perritos.forEach(p => {
+        const nombre = p.querySelector('h3').textContent.toLowerCase();
+        p.style.display = nombre.includes(texto) ? 'block' : 'none';
+      });
+    });
+
+    // Botones visuales
+    document.querySelectorAll('.button-group button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const group = btn.parentElement;
+        group.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        // Aquí puedes cambiar el contenido según el botón
+      });
+    });
+  </script>
+
+</body>
+</html>
